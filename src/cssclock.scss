@@ -1,22 +1,6 @@
-html {
-	display: table;
-	width: 100%;
-	height: 100%;
-	background: black;
-	color: white;
-}
-
-body {
-	display: table-cell;
-	vertical-align: middle;
-}
-
 .clock {
 	position: relative;
-	$width: 350px;
-	width: $width;
-	height: $width;
-	margin: auto;
+
 	border-radius: 50%;
 
 	$width: 1%;
@@ -35,12 +19,15 @@ body {
 			comma
 		);
 	}
-	$bg: append($bg, radial-gradient(#555, black), comma);
+	$bg: append($bg, radial-gradient(transparent, black), comma);
 	$bgSize: $width 100%, 100% $width;
-	background-image: $bg;
-	background-size: append($bgSize, 100%, comma);
-	background-position: 50%;
-	background-repeat: no-repeat;
+	background: {
+		color: #555;
+		image: $bg;
+		size: append($bgSize, 100%, comma);
+		position: 50%;
+		repeat: no-repeat;
+	}
 
 	&::before,
 	&::after {
@@ -49,6 +36,7 @@ body {
 		width: 100%;
 		height: 100%;
 		background: inherit;
+		background-color: transparent;
 		background-size: append($bgSize, 0, comma);
 	}
 	&::before {
@@ -77,9 +65,11 @@ $hourHand_width: 3%;
 	height: $height;
 	left: (50% - $width/2);
 	transform-origin: center percentage(50% / ($top + $height));
-	background: #CCC;
-	animation-name: hourHand;
-	animation-duration: (60s*60*12);
+	animation: {
+		name: hourHand;
+		duration: (60s*60*12);
+	}
+	background-color: #CCC;
 }
 
 .minute {
@@ -89,9 +79,11 @@ $hourHand_width: 3%;
 	height: $height;
 	left: (50% - $width/2);
 	transform-origin: center percentage(50% / $height);
-	background: #CCC;
-	animation-name: minuteHand;
-	animation-duration: (60s*60);
+	animation: {
+		name: minuteHand;
+		duration: (60s*60);
+	}
+	background-color: #CCC;
 }
 
 .second {
@@ -102,9 +94,11 @@ $hourHand_width: 3%;
 	left: (50% - $secondHand_width/2);
 	$secondHand_transform_origin: percentage(50% / $secondHand_height);
 	transform-origin: center $secondHand_transform_origin;
-	background: gray;
-	animation-name: secondHand;
-	animation-duration: 60s;
+	animation: {
+		name: secondHand;
+		duration: 60s;
+	}
+	background-color: gray;
 
 	&::before {
 		content: '';
