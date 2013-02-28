@@ -8,23 +8,20 @@
 	$color: #CCC;
 	$bg: ();
 	@for $n from 0 through 1 {
-		$bg: append($bg,
-			linear-gradient(
-				($n*90deg),
-				$color $length,
-				transparent $length,
-				transparent (100% - $length),
-				$color (100% - $length)
-			),
-			comma
+		$bg: $bg, linear-gradient(
+			($n*90deg),
+			$color $length,
+			transparent $length,
+			transparent (100% - $length),
+			$color (100% - $length)
 		);
 	}
-	$bg: append($bg, radial-gradient(transparent, black), comma);
+	$bg: $bg, radial-gradient(transparent, black);
 	$bgSize: $width 100%, 100% $width;
 	background: {
 		color: #555;
 		image: $bg;
-		size: append($bgSize, 100%, comma);
+		size: $bgSize, 100%;
 		position: 50%;
 		repeat: no-repeat;
 	}
@@ -37,7 +34,7 @@
 		height: 100%;
 		background: inherit {
 			color: transparent;
-			size: append($bgSize, 0, comma);
+			size: $bgSize, 0;
 		}
 	}
 	&::before {
