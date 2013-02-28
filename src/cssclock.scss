@@ -35,9 +35,10 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		background: inherit;
-		background-color: transparent;
-		background-size: append($bgSize, 0, comma);
+		background: inherit {
+			color: transparent;
+			size: append($bgSize, 0, comma);
+		}
 	}
 	&::before {
 		transform: rotate(30deg);
