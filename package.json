@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "coffee -o lib/cssclock.js -c src/cssclock.coffee && sass src/cssclock.scss lib/cssclock.css --no-source-map"
+    "build": "coffee -o demo/build/cssclock.js -c src/cssclock.coffee && sass src/cssclock.scss demo/build/cssclock.css --no-source-map"
   },
   "devDependencies": {
     "coffeescript": "2.7.0",
