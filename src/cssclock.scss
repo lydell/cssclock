@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .clock {
 	position: relative;
 
@@ -59,10 +61,10 @@ $hourHand_width: 3%;
 	top: $top;
 	$width: $hourHand_width;
 	width: $width;
-	$height: (50% - $top + $width/2);
+	$height: (50% - $top + $width*0.5);
 	height: $height;
-	left: (50% - $width/2);
-	transform-origin: center percentage(50% / ($top + $height));
+	left: (50% - $width*0.5);
+	transform-origin: center percentage(math.div(50%, $top + $height));
 	animation: {
 		name: hourHand;
 		duration: (60s*60*12);
@@ -73,10 +75,10 @@ $hourHand_width: 3%;
 .minute {
 	$width: 3%;
 	width: $width;
-	$height: (50% + $width/2);
+	$height: (50% + $width*0.5);
 	height: $height;
-	left: (50% - $width/2);
-	transform-origin: center percentage(50% / $height);
+	left: (50% - $width*0.5);
+	transform-origin: center percentage(math.div(50%, $height));
 	animation: {
 		name: minuteHand;
 		duration: (60s*60);
@@ -89,8 +91,8 @@ $hourHand_width: 3%;
 	width: $secondHand_width;
 	$secondHand_height: 60%;
 	height: $secondHand_height;
-	left: (50% - $secondHand_width/2);
-	$secondHand_transform_origin: percentage(50% / $secondHand_height);
+	left: (50% - $secondHand_width*0.5);
+	$secondHand_transform_origin: percentage(math.div(50%, $secondHand_height));
 	transform-origin: center $secondHand_transform_origin;
 	animation: {
 		name: secondHand;
@@ -101,12 +103,12 @@ $hourHand_width: 3%;
 	&::before {
 		content: '';
 		position: absolute;
-		$width: percentage($hourHand_width / $secondHand_width + 1);
+		$width: percentage(math.div($hourHand_width, $secondHand_width) + 1);
 		width: $width;
-		$height: ($secondHand_width * $width / $secondHand_height);
+		$height: math.div($secondHand_width * $width, $secondHand_height);
 		height: $height;
-		left: -(($width - 100) / 2);
-		top: ($secondHand_transform_origin - $height/2);
+		left: -(($width - 100) * 0.5);
+		top: ($secondHand_transform_origin - $height*0.5);
 		border-radius: 50%;
 		background: inherit;
 		box-shadow: inherit;
